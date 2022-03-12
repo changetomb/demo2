@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/person")
 public class PersonController
