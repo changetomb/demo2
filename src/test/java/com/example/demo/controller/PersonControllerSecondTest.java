@@ -82,7 +82,7 @@ class PersonControllerSecondTest {
     }
 
     @Test
-    public void deletePersonMethodPut() throws Exception {
+    public void deletePersonMethodDelete() throws Exception {
 
 
         Person person = new Person.PersonBuilder()
@@ -93,5 +93,14 @@ class PersonControllerSecondTest {
 
         this.mockMvc.perform(delete(INDEX_HOME).contentType(MediaType.APPLICATION_JSON)
                 .content(personJson)).andExpect(status().isOk());
+    }
+    @Test
+    public void getPersonMethodPut() throws Exception {
+
+        Long id = 1L;
+        Person person = personService.findById(id).get();
+        String personToJsonString = new ObjectMapper().writeValueAsString(person);
+        this.mockMvc.perform(get(INDEX_HOME+"/"+id)).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString(personToJsonString)));
     }
 }

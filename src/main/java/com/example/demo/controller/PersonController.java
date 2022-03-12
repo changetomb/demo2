@@ -34,4 +34,8 @@ public class PersonController
     @DeleteMapping
     public void delete(@RequestBody Person person) { personService.deleteById(person.getId()); }
 
+    @GetMapping
+    @RequestMapping("/{id}")
+    public Person get(@PathVariable("id") Long id)  {  return personService.findById(id).get();  }
+
 }
